@@ -46,7 +46,7 @@ const onSubmit = async (params) => {
       {#if $cityStore.name}{$cityStore.name}{:else}未選択{/if}</dd>
       <dt>出発地</dt>
       <dd>
-        <ul class="mdCMN03List">
+        <ul class="mdCMN03FloatList">
         {#each deptStore.nameMap as dept }
           <li 
           class:ExSelected={$deptStore === dept.code} 

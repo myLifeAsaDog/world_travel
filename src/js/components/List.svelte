@@ -4,6 +4,8 @@ import TourCard from './list/TourCard.svelte';
 import Pager from './list/Pager.svelte';
 import Detail from './Detail.svelte';
 import Footer from './common/Footer.svelte';
+
+$:orderName = orderStore.nameMap.filter(item => item.code === $orderStore)
 </script>
 
 <main>
@@ -16,7 +18,7 @@ import Footer from './common/Footer.svelte';
   <section>
     <div class="MdCMN07Result">
       <p class="mdCMN07Sort">
-        {orderStore.nameMap[$orderStore].name}
+        {orderName[0].name}
       </p>
       <p class="mdCMN07NumOfResult">
         検索結果：{$tourList.result||'--'}件
@@ -26,9 +28,11 @@ import Footer from './common/Footer.svelte';
     {#if $tourList.result === 0}
       <li>条件に該当するツアーはありませんでした。</li>
     {/if}
-    {#each $tourList.tourList as tour}
-      <li><TourCard item={tour}/></li>
-    {/each}
+    {#if $tourList.result}
+      {#each $tourList.tourList as tour}
+        <li><TourCard item={tour}/></li>
+      {/each}
+    {/if}
     </ol>
   </section>
   {#if $tourList.result}

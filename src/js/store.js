@@ -16,12 +16,12 @@ const SEAT_CLASS_MAP = [
 ]
 
 const ORDER_MAP = [
+  { code: 5, name: 'おすすめ順' },
   { code: 0, name: '新着順' },
   { code: 1, name: '料金が安い順' },
   { code: 2, name: '料金が高い順' },
   { code: 3, name: '期間が短い順' },
   { code: 4, name: '期間が長い順' },
-  { code: 5, name: 'おすすめ順' },
 ]
 
 /** ページ遷移 */
@@ -102,14 +102,37 @@ const cities = () => {
 }
 
 /** 検索結果 */
+const defaultTour = {
+  result: 0,
+  result_start: 0,
+  tourList: [{
+    id: null,
+    title: null,
+    last_update: null,
+    url: null,
+    term: null,
+    brand: null,
+    dept_city: null,
+    price_min: null,
+    price_max: null,
+    image: null,
+    seat_class: null,
+    city_summary: null,
+    hotel_summary: null,
+    theme: null,
+    sche: [],
+    airline_summary: null,
+  }],
+}
+
 const tours = () => {
-  const { subscribe, set } = writable({ tourList: [] })
+  const { subscribe, set } = writable({ result: 0, result_start: 0, tourList: [] })
   return {
     subscribe,
     getTourlList: async (dataParams) => {
       const res = await fetch(`./api/tourList.php?countryCode=${dataParams.countryCode}&cityCode=${dataParams.cityCode}&deptCity=${dataParams.deptCity}&seatClass=${dataParams.seatClass}&order=${dataParams.order}&pageStart=${dataParams.pageStart}`)
       const tours = await res.json()
-      set(tours)
+      tours.tourList.length ? set(tours) : set(defaultTour)
     },
   }
 }

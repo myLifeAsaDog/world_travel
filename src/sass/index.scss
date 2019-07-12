@@ -183,14 +183,6 @@ body {
     dt {
       padding: 20px 0;
     }
-    dd {
-      display: none;
-    }
-    &.ExOpen {
-      dd {
-        display: block;
-      }
-    }
     .mdCMN03Input {
       padding: 15px 10px;
       margin: 0 0 20px 0;
@@ -198,7 +190,7 @@ body {
       background: #eeeeee;
     }
   }
-  .mdCMN03List {
+  .mdCMN03FloatList {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -213,6 +205,17 @@ body {
       &.ExSelected {
         background: #eeeeee;
       }
+    }
+  }
+  .mdCMN03List {
+    padding: 0 0 15px 0;
+
+    li {
+      padding: 15px 10px;
+
+      &.ExSelected {
+        background: #eeeeee;
+      }     
     }
   }
   .mdCMN03Btn {
@@ -515,6 +518,7 @@ body {
   background: $background-main;
   height: 100vh;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   transition: all 0.5s ease;
 
   &.ExOpen {

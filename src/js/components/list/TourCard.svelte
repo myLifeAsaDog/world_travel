@@ -4,8 +4,8 @@ import { tourDetail, detailOverlayStore } from '../../store.js';
 /* props */
 export let item = {};
 
-$:destinations = item.city_summary.split('、');
-$:style = `background-image:url(${item.image})`;
+const destinations = item.city_summary? item.city_summary.split('、'): '';
+const style = item.image? `background-image:url(${item.image})`: '';
 
 const addDigits = (numberParam) => {
   return String(numberParam).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')

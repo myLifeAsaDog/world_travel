@@ -1,10 +1,14 @@
 <script>
 import { tourDetail, detailOverlayStore } from '../store.js';
 
-$:style = `background-image:url(${$tourDetail.image})`;
-$:destCites = $tourDetail.city_summary ? $tourDetail.city_summary.split('、') : '';
-$:tourTheme = $tourDetail.theme ? $tourDetail.theme[0].name : false;
-$:hotels = $tourDetail.hotel_summary ? $tourDetail.hotel_summary.split('、') : '';
+$:style = 
+$tourDetail.image ? `background-image:url(${$tourDetail.image})` : '';
+$:destCites = 
+$tourDetail.city_summary ? $tourDetail.city_summary.split('、') : '';
+$:tourTheme = 
+$tourDetail.theme ? $tourDetail.theme[0].name : '';
+$:hotels = 
+$tourDetail.hotel_summary ? $tourDetail.hotel_summary.split('、') : '';
 
 const addDigits = (numberParam) => {
   return String(numberParam).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')

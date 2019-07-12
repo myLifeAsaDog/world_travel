@@ -1,4 +1,5 @@
 <script>
+import { slide } from 'svelte/transition';
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
@@ -6,9 +7,10 @@ export let items;
 let isOpenPanel = false;
 </script>
 
-<dl class:ExOpen={isOpenPanel}>  
+<dl>  
   <dt on:click={() => isOpenPanel = !isOpenPanel}>{items.title}</dt>
-  <dd>
+  {#if isOpenPanel}
+  <dd transition:slide="{{ y:10, duration:300 }}">
     <ul class="mdCMN03List">
     {#each items.list as item }
       <li 
@@ -17,4 +19,5 @@ let isOpenPanel = false;
     {/each}
     </ul>
   </dd>
+  {/if}
 </dl>

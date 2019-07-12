@@ -25,7 +25,7 @@ const backPanel = () => {
   <section>
     <header class="Md01SubHeader">
       {#if isCanGoBack}
-      <span class="mdCMN04Back" on:click={() => backPanel}>BACK</span>
+      <span class="mdCMN04Back" on:click={backPanel}>BACK</span>
       {:else}
       <span></span>
       {/if}  
