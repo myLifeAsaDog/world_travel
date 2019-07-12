@@ -1,0 +1,526 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+ul li,
+ol li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+$background-main: #f1f1f1;
+$color-main: #666666;
+
+$header-bg: #27457b;
+$header-color: #f9f9f9;
+
+$footer-bg: #676e7f;
+
+%headerButton {
+  padding: 18px;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 18px 18px;
+  text-indent: -9999px;
+}
+
+body {
+  background: $background-main;
+  color: $color-main;
+}
+.LyHead {
+  display: flex;
+  background: $header-bg;
+
+  span {
+    @extend %headerButton;
+  }
+
+  .lyHeadMd02Back {
+    background-image: url("../images/mdcmn04back.png");
+  }
+
+  h1 {
+    flex: 1;
+    padding: 20px;
+    color: $header-color;
+    text-align: center;
+  }
+}
+.LyFoot {
+  background: $footer-bg;
+  margin: 30px 0 0 0;
+  padding: 30px 15px;
+  color: $header-color;
+  text-align: right;
+
+  p {
+    font-size: 12px;
+  }
+  a {
+    font-size: 12px;
+    color: $header-color;
+  }
+}
+.Md01SubHeader {
+  display: flex;
+  background: $header-bg;
+  color: $header-color;
+
+  h2 {
+    flex: 1;
+    color: $header-color;
+    line-height: 54px;
+    text-align: center;
+  }
+  span {
+    @extend %headerButton;
+
+    &.mdCMN04Back {
+      background-image: url("../images/mdcmn04back.png");
+    }
+    &.mdCMN04Close {
+      background-image: url("../images/mdcmn04close.png");
+    }
+  }
+}
+.MdCMN01Main {
+  position: relative;
+  background: url("../images/mdcmn01bg.jpg");
+  background-size: cover;
+
+  .mdCMN01Btn {
+    display: block;
+    padding: 100px 0;
+    background: #34343466;
+
+    span {
+      display: block;
+      margin: 0 30px;
+      border: solid 4px #ffffff;
+      color: #ffffff;
+      font-weight: bold;
+      text-align: center;
+      line-height: 48px;
+    }
+  }
+  .mdCMN01Author {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+    color: $header-color;
+  }
+}
+
+.MdCMN02News {
+  margin: 15px;
+  color: $color-main;
+
+  .mdCMN02Title {
+    margin: 30px 0;
+
+    time {
+      float: right;
+      font-size: 12px;
+    }
+  }
+  .mdCMN02List {
+    margin: 15px 0;
+
+    li {
+      a {
+        display: block;
+        margin: 0 0 15px 0;
+        color: $color-main;
+        overflow: hidden;
+        clear: both;
+
+        dl {
+          float: left;
+          width: 50px;
+          border: solid 1px $color-main;
+          text-align: center;
+
+          dt {
+            font-size: 12px;
+            line-height: 1.8;
+          }
+          dd {
+            padding: 4px 0 0 0;
+            border-top: solid 7px $color-main;
+            font-size: 22px;
+            line-height: 1;
+          }
+        }
+        p {
+          padding: 0 0 0 65px;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+}
+.MdCMN03Areas {
+  padding: 20px 10px;
+
+  dl {
+    background: #fafafa;
+    padding: 0 10px;
+    margin-bottom: 2px;
+
+    dt {
+      padding: 20px 0;
+    }
+    dd {
+      display: none;
+    }
+    &.ExOpen {
+      dd {
+        display: block;
+      }
+    }
+    .mdCMN03Input {
+      padding: 15px 10px;
+      margin: 0 0 20px 0;
+      border-radius: 4px;
+      background: #eeeeee;
+    }
+  }
+  .mdCMN03List {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    li {
+      padding: 10px;
+      margin: 0 0 20px 0;
+      border-radius: 4px;
+      text-align: center;
+      transition: background 0.2s linear;
+
+      &.ExSelected {
+        background: #eeeeee;
+      }
+    }
+  }
+  .mdCMN03Btn {
+    display: block;
+    padding: 20px;
+    margin: 60px 0 0 0;
+    width: 100%;
+    background: #999;
+    border: none;
+    border-radius: 4px;
+    color: $header-color;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+.MdCMN04Overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  background: #eeeeee;
+  transition: all 0.5s ease;
+
+  &.ExOpen {
+    top: 0px;
+  }
+  &.ExClose {
+    top: 200vh;
+  }
+
+  .mdCMN04Wrapper {
+    display: inline-flex;
+    color: $color-main;
+    transition: margin 0.3s ease;
+
+    &[data-current="area"] {
+      margin-left: 0px;
+    }
+    &[data-current="country"] {
+      margin-left: -100vw;
+    }
+    &[data-current="city"] {
+      margin-left: -200vw;
+    }
+
+    dl {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 100vh;
+
+      dt {
+        padding: 20px;
+        background: #aaaaaa;
+        color: $header-color;
+      }
+      dd {
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+
+        ul {
+          padding: 0 0 200px 0;
+
+          li {
+            margin: 0 20px;
+            padding: 20px 0;
+            border-bottom: solid 1px #cccccc;
+
+            &.ExSelected {
+              font-weight: bold;
+            }
+            &:last-child {
+              border: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.MdCMN05TourList {
+  margin: 30px 15px;
+  background: $header-color;
+  border-radius: 4px;
+  box-shadow: 0px 0px 8px #cccccc;
+  overflow: hidden;
+
+  .mdCMN05TourImage {
+    position: relative;
+    height: 220px;
+    background-color: #aaaaaa;
+    background-position: center center;
+    background-size: cover;
+    line-height: 0;
+    overflow: hidden;
+
+    .mdCMN05Info {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border: solid 2px $header-color;
+      border-radius: 2px;
+      text-align: center;
+
+      span {
+        display: block;
+        padding: 4px 6px;
+        font-size: 14px;
+
+        &.mdCMN05Dept {
+          background: $header-color;
+          color: #333333;
+        }
+        &.mdCMN05Term {
+          background: rgba(#000000, 0.5);
+          color: $header-color;
+        }
+      }
+    }
+    .mdCMN05Price {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(#000000, 0.5);
+      border: solid 2px $header-color;
+      border-radius: 2px;
+      color: $header-color;
+
+      span {
+        display: block;
+        padding: 6px 8px;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+
+        &.mdCMN05Tour {
+          border-top: solid 1px $header-color;
+          font-size: 16px;
+          letter-spacing: -0.01em;
+        }
+      }
+    }
+  }
+  .mdCMN05City {
+    padding: 10px;
+    background: #eeeeee;
+
+    dt {
+      float: left;
+      margin: 0 10px 0 0;
+      width: 18px;
+      height: 18px;
+      background-image: url("../images/mdcmn05city.png");
+      background-repeat: no-repeat;
+      background-position: 0 2px;
+      background-size: 18px 18px;
+      text-indent: -9999px;
+      opacity: 0.5;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        margin: 0 5px 0 0;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+  }
+  .mdCMN05Desc {
+    padding: 20px;
+    line-height: 1.5;
+  }
+}
+.MdCMN06Pager {
+  display: flex;
+  margin: 0 15px;
+
+  li {
+    flex: 1;
+    padding: 10px;
+    border: solid 1px #cccccc;
+    border-radius: 4px;
+    text-align: center;
+
+    &.ExDisabled {
+      color: #cccccc;
+    }
+    &:nth-child(2) {
+      border: none;
+    }
+  }
+}
+.MdCMN07Result {
+  display: flex;
+  padding: 30px 20px 0 20px;
+
+  .mdCMN07Sort {
+    flex: 1;
+  }
+  .mdCMN07NumOfResult {
+    flex: 1;
+    text-align: right;
+  }
+}
+.mdCMN07OrderPanel {
+  position: fixed;
+  left: 0;
+  z-index: 100;
+  background: $background-main;
+  transition: all 0.5s ease;
+
+  &.ExOpen {
+    bottom: 0;
+  }
+  &.ExClose {
+    bottom: -100vh;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+
+    li {
+      flex-grow: 1;
+      flex-basis: 50%;
+      padding: 10px 20px;
+      text-align: center;
+      border-radius: 4px;
+      box-sizing: border-box;
+
+      &.ExSelected {
+        background: #cccccc;
+      }
+    }
+  }
+}
+.MdCMN08Overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background: #34343499;
+
+  &.ExActive {
+    display: block;
+  }
+}
+.MdCMN09Img {
+  height: 280px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.MdCMN10Tbl {
+  margin: -60px 0 0 0;
+  padding: 20px;
+
+  dl {
+    background: $header-color;
+    border-radius: 4px;
+    box-shadow: 0px 0px 6px #aaaaaa;
+
+    dt {
+      margin: 0 15px;
+      padding: 15px 0;
+      border-bottom: solid 1px #eeeeee;
+    }
+    dd {
+      padding: 15px;
+      line-height: 1.5;
+
+      ol,
+      ul {
+        li {
+          line-height: 1.5;
+        }
+      }
+
+      a {
+        color: $color-main;
+        word-break: break-all;
+      }
+    }
+  }
+}
+.MdCMN11Overlay {
+  position: fixed;
+  left: 0;
+  z-index: 100;
+  background: $background-main;
+  height: 100vh;
+  overflow: scroll;
+  transition: all 0.5s ease;
+
+  &.ExOpen {
+    top: 0;
+  }
+  &.ExClose {
+    top: 200vh;
+  } 
+}
