@@ -24,16 +24,16 @@ $:orderName = orderStore.nameMap.filter(item => item.code === $orderStore)
         検索結果：{$tourList.result||'--'}件
       </p>
     </div>    
-    <ol>
     {#if $tourList.result === 0}
-      <li>条件に該当するツアーはありませんでした。</li>
+    <p class="mdCMN07NoResult">条件に該当するツアーはありませんでした。</p>
     {/if}
     {#if $tourList.result}
+    <ol>
       {#each $tourList.tourList as tour}
         <li><TourCard item={tour}/></li>
       {/each}
+    </ol>  
     {/if}
-    </ol>
   </section>
   {#if $tourList.result}
   <Pager />
