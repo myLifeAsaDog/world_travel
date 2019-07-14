@@ -138,15 +138,15 @@ const tours = () => {
   }
 }
 
-/** ツアー詳細オーバーレイ */
-const detailOverlay = () => {
-  const { subscribe, set } = writable(false)
+const tourDetail = () => {
+  const { subscribe, set } = writable(defaultTour)
   return {
     subscribe,
-    closePanel: () => set(false),
-    openPanel: () => set(true),
+    setTourDetail: (tourParam) => set(tourParam),
+    reset: () => set(defaultTour)
   }
 }
+
 /** 検索条件 */
 const searchParams = () => derived(
   [countryStore, cityStore, deptStore, seatStore, orderStore],
@@ -175,6 +175,5 @@ export const cityStore = writable([])
 export const cityList = cities()
 export const tourStore = writable({})
 export const tourList = tours()
-export const detailOverlayStore = detailOverlay()
-export const tourDetail = writable({})
+export const tourDetailStore = tourDetail()
 export const searchParamsDerived = searchParams()

@@ -1,14 +1,20 @@
 <script>
-import { tourDetail, detailOverlayStore } from '../../store.js';
+import { tourDetailStore } from '../../store.js';
+import { slide } from 'svelte/transition';
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
 
-$:style = 
-$tourDetail.image ? `background-image:url(${$tourDetail.image})` : '';
+$:backgroundImage = 
+$tourDetailStore.image ? `background-image:url(${$tourDetailStore.image});` : '';
+$:imageTop = 
+$tourDetailStore.imageTop ? `top:${$tourDetailStore.imageTop}px;`: '';
+
 $:destCites = 
-$tourDetail.city_summary ? $tourDetail.city_summary.split('、') : '';
+$tourDetailStore.city_summary ? $tourDetailStore.city_summary.split('、') : '';
 $:tourTheme = 
-$tourDetail.theme ? $tourDetail.theme[0].name : '';
+$tourDetailStore.theme ? $tourDetailStore.theme[0].name : '';
 $:hotels = 
-$tourDetail.hotel_summary ? $tourDetail.hotel_summary.split('、') : '';
+$tourDetailStore.hotel_summary ? $tourDetailStore.hotel_summary.split('、') : '';
 
 const addDigits = (numberParam) => {
   return String(numberParam).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
@@ -19,26 +25,26 @@ const dateFormat = (dateParam) => {
 }
 </script>
 
-<div class="MdCMN11Overlay" class:ExOpen={$detailOverlayStore} class:ExClose={!$detailOverlayStore}>
-  <header class="Md01SubHeader">
-    <span></span>
-    <h2>ツアー詳細</h2>
-    <span class="mdCMN04Close" on:click={() => detailOverlayStore.closePanel()}>CLOSE</span>
-  </header>
-  <div class="MdCMN09Img" style={style}></div>
+<div class="MdCMN11Overlay">
+
+  <div class="MdCMN09Img" style={backgroundImage} 
+  transition:slide={{ y:100, duration:300 }}>
+    <span on:click={() => dispatch('closeDetailPanel', false)}>CLOSE</span>
+  </div>  
+
   <article class="MdCMN10Tbl">
     <dl>
       <dt>ツアーコード</dt>
-      <dd>{$tourDetail.id}</dd>
+      <dd>{$tourDetailStore.id}</dd>
       <dt>ツアー名</dt>
-      <dd>{$tourDetail.title}</dd>
+      <dd>{$tourDetailStore.title}</dd>
       <dt>ツアー料金</dt>
-      <dd>&yen;{addDigits($tourDetail.price_min)} ～ 
-      &yen;{addDigits($tourDetail.price_max)}</dd>
+      <dd>&yen;{addDigits($tourDetailStore.price_min)} ～ 
+      &yen;{addDigits($tourDetailStore.price_max)}</dd>
       <dt>ツアー日数</dt>
-      <dd>{$tourDetail.term}日間</dd>
+      <dd>{$tourDetailStore.term}日間</dd>
       <dt>出発地</dt>
-      <dd>{$tourDetail.dept_city}</dd>
+      <dd>{$tourDetailStore.dept_city}</dd>
       <dt>目的地</dt>
       <dd>
         <ul>
@@ -51,16 +57,16 @@ const dateFormat = (dateParam) => {
       <dt>ツアーテーマ</dt>
       <dd>
         <ul>
-          {#each $tourDetail.theme as theme}
+          {#each $tourDetailStore.theme as theme}
           <li>{theme.name}</li>
           {/each}
         </ul>
       </dd>
       {/if}
       <dt>航空会社</dt>
-      <dd>{$tourDetail.airline_summary}</dd>
+      <dd>{$tourDetailStore.airline_summary}</dd>
       <dt>シートクラス</dt>
-      <dd>{$tourDetail.seat_class}</dd>
+      <dd>{$tourDetailStore.seat_class}</dd>
       <dt>ホテル</dt>
       <dd>
         <ul>
@@ -72,19 +78,19 @@ const dateFormat = (dateParam) => {
       <dt>ツアー日程</dt>
       <dd>
         <ol>
-          {#each $tourDetail.sche as sche}
+          {#each $tourDetailStore.sche as sche}
           <li>{sche.day}日目：{sche.city||'帰国'}</li>
           {/each}
         </ol>
       </dd>
       <dt>企画会社</dt>
-      <dd>{$tourDetail.brand}</dd>
+      <dd>{$tourDetailStore.brand}</dd>
       <dt>AB-ROAD URL</dt>
       <dd>
-        <a href={$tourDetail.url} target="_blank">{$tourDetail.url}</a>
+        <a href={$tourDetailStore.url} target="_blank">{$tourDetailStore.url}</a>
       </dd>
       <dt>最終更新日</dt>
-      <dd>{dateFormat($tourDetail.last_update)}</dd>
+      <dd>{dateFormat($tourDetailStore.last_update)}</dd>
     </dl>
   </article>
 </div>

@@ -1,13 +1,15 @@
 <script>
-import { routerStore, orderStore, tourList, tourDetail } from '../store.js';
+import { routerStore, orderStore, tourList, tourDetailStore } from '../store.js';
 import TourCard from './list/TourCard.svelte';
 import Pager from './list/Pager.svelte';
 import Detail from './list/Detail.svelte';
 import SortPanel from './list/SortPanel.svelte';
 import Footer from './common/Footer.svelte';
 
+let isOpenSortPanel = false;
+let isOpenDetail = false;
+
 $:orderName = orderStore.nameMap.filter(item => item.code === $orderStore);
-let isOpenPanel = false;
 </script>
 
 <main class="LyMain">
@@ -15,11 +17,11 @@ let isOpenPanel = false;
     <span class="lyHeadMd02Back" 
     on:click={() => routerStore.search()}>BACK</span>
     <h1>検索結果</h1>
-    <span></span>
+    <span/>
   </header>
   <section>
     <div class="MdCMN07Result">
-      <p class="mdCMN07Sort" class:ExOpen={isOpenPanel} class:ExClose={!isOpenPanel} on:click={() => isOpenPanel = !isOpenPanel}>
+      <p class="mdCMN07Sort" class:ExOpen={isOpenSortPanel} class:ExClose={!isOpenSortPanel} on:click={() => isOpenSortPanel = !isOpenSortPanel}>
         {orderName[0].name}
       </p>
       <p class="mdCMN07NumOfResult">
@@ -32,7 +34,7 @@ let isOpenPanel = false;
     {#if $tourList.result}
     <ol>
       {#each $tourList.tourList as tour}
-        <li><TourCard item={tour}/></li>
+        <li><TourCard item={tour} on:openDetailPanel={() => isOpenDetail = true}/></li>
       {/each}
     </ol>  
     {/if}
@@ -41,6 +43,10 @@ let isOpenPanel = false;
   <Pager />
   {/if}
   <Footer />
-  <Detail />
-  <SortPanel isOpenPanel={isOpenPanel} on:closePanel={() => isOpenPanel = false} />
+  <SortPanel 
+    isOpenSortPanel={isOpenSortPanel} 
+    on:closeSortPanel={() => isOpenSortPanel = false} />
+  {#if isOpenDetail}
+  <Detail on:closeDetailPanel={() => isOpenDetail = false}/>
+  {/if}  
 </main>

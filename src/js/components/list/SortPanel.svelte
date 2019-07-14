@@ -3,19 +3,19 @@ import { orderStore, tourList, searchParamsDerived } from '../../store.js';
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
-export let isOpenPanel = false;
+export let isOpenSortPanel = false;
 
 const onSortChange = async(orderCode) => {
-  dispatch('closePanel', false);
+  dispatch('closeSortPanel', false);
   tourList.reset();
   orderStore.changeOrder(orderCode);
   await tourList.getTourlList($searchParamsDerived);
 }
 </script>
 
-<aside class="mdCMN07OrderPanel" class:ExOpen={isOpenPanel} class:ExClose={!isOpenPanel}>
+<aside class="mdCMN07OrderPanel" class:ExOpen={isOpenSortPanel} class:ExClose={!isOpenSortPanel}>
   <header class="Md01SubHeader">
-    <span></span>
+    <span/>
     <h2>並び順</h2>
     <span
       class="mdCMN04Close"

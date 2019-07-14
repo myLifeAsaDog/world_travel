@@ -1,5 +1,5 @@
 <script>
-import { routerStore, deptStore, seatStore, orderStore, searchOverlayStore, countryStore, cityStore, tourList, tourDetail } from '../store.js';
+import { routerStore, deptStore, seatStore, orderStore, searchOverlayStore, countryStore, cityStore, tourList, tourDetailStore } from '../store.js';
 import Footer from './common/Footer.svelte';
 import TogglePanel from './search/TogglePanel.svelte';
 import Overlay from './search/overlay/Overlay.svelte';
@@ -27,7 +27,7 @@ const onSubmit = async (params) => {
   }
   await tourList.getTourlList(dataParams)
   /* Detailが描画できないので初期値を設定する */
-  tourDetail.set($tourList.tourList[0])
+  tourDetailStore.setTourDetail($tourList.tourList[0])
   routerStore.list()
 }
 </script>
@@ -36,7 +36,7 @@ const onSubmit = async (params) => {
   <header class="LyHead">
     <span class="lyHeadMd02Back" on:click={() => routerStore.index()}>BACK</span>
     <h1>検索条件</h1>
-    <span></span>
+    <span/>
   </header>
   <section class="MdCMN03Areas">
     <dl class="ExOpen">

@@ -27,7 +27,7 @@ const backPanel = () => {
       {#if isCanGoBack}
       <span class="mdCMN04Back" on:click={backPanel}>BACK</span>
       {:else}
-      <span></span>
+      <span/>
       {/if}  
       <h2>目的地</h2>
       <span class="mdCMN04Close" on:click={() => searchOverlayStore.closePanel()}>CLOSE</span>
