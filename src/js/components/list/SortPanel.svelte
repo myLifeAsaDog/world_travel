@@ -1,12 +1,15 @@
 <script>
 import { orderStore, tourList, searchParamsDerived } from '../../store.js';
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
 
 export let isOpenPanel = false;
 
 const onSortChange = async(orderCode) => {
+  dispatch('closePanel', false);
+  tourList.reset();
   orderStore.changeOrder(orderCode);
   await tourList.getTourlList($searchParamsDerived);
-  isOpenPanel = false;
 }
 </script>
 
@@ -16,7 +19,7 @@ const onSortChange = async(orderCode) => {
     <h2>並び順</h2>
     <span
       class="mdCMN04Close"
-      on:click={() => isOpenPanel = false}
+      on:click={() => dispatch('closePanel', false)}
     >CLOSE</span>
   </header>
   <ul>

@@ -126,7 +126,7 @@ const defaultTour = {
 }
 
 const tours = () => {
-  const { subscribe, set } = writable({ result: 0, result_start: 0, tourList: [] })
+  const { subscribe, set } = writable({ result: null, result_start: 1, tourList: [] })
   return {
     subscribe,
     getTourlList: async (dataParams) => {
@@ -134,6 +134,7 @@ const tours = () => {
       const tours = await res.json()
       tours.tourList.length ? set(tours) : set(defaultTour)
     },
+    reset: () => set({ result: null, result_start: 1, tourList: [] })
   }
 }
 

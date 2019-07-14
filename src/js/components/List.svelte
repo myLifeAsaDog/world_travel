@@ -19,11 +19,11 @@ let isOpenPanel = false;
   </header>
   <section>
     <div class="MdCMN07Result">
-      <p class="mdCMN07Sort" on:click={() => isOpenPanel = !isOpenPanel}>
+      <p class="mdCMN07Sort" class:ExOpen={isOpenPanel} class:ExClose={!isOpenPanel} on:click={() => isOpenPanel = !isOpenPanel}>
         {orderName[0].name}
       </p>
       <p class="mdCMN07NumOfResult">
-        検索結果：{$tourList.result||'--'}件
+        検索結果：{$tourList.result||'--'} 件
       </p>
     </div>    
     {#if $tourList.result === 0}
@@ -42,5 +42,5 @@ let isOpenPanel = false;
   {/if}
   <Footer />
   <Detail />
-  <SortPanel isOpenPanel={isOpenPanel} />
+  <SortPanel isOpenPanel={isOpenPanel} on:closePanel={() => isOpenPanel = false} />
 </main>
