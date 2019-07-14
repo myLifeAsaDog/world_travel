@@ -4,7 +4,7 @@ import NewsFlash from './index/NewsFlash.svelte';
 import Footer from './common/Footer.svelte';
 </script>
 
-<main>
+<main class="LyMain">
   <header class="LyHead">
     <h1 class="lyHeadMd01Logo">WORLD TRAVEL</h1>
   </header>

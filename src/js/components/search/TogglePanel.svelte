@@ -6,6 +6,11 @@ const dispatch = createEventDispatcher();
 export let items;
 $:selectedName = items.list.filter(item => item.code === items.selectedItem);
 let isOpenPanel = false;
+
+const onClickList = (selectedCode) => {
+  isOpenPanel = false;
+  dispatch('select', selectedCode);
+} 
 </script>
 
 <dl>  
@@ -17,7 +22,7 @@ let isOpenPanel = false;
     {#each items.list as item }
       <li 
       class:ExSelected={items.selectedItem === item.code}
-      on:click={() => dispatch('select', item.code)}>{item.name}</li>
+      on:click={() => onClickList(item.code)}>{item.name}</li>
     {/each}
     </ul>
   </dd>

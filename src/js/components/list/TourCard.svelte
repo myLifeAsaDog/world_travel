@@ -1,7 +1,6 @@
 <script>
 import { tourDetail, detailOverlayStore } from '../../store.js';
 
-/* props */
 export let item = {};
 
 const destinations = item.city_summary? item.city_summary.split('、'): '';

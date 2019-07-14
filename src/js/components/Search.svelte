@@ -32,7 +32,7 @@ const onSubmit = async (params) => {
 }
 </script>
 
-<main>
+<main class="LyMain">
   <header class="LyHead">
     <span class="lyHeadMd02Back" on:click={() => routerStore.index()}>BACK</span>
     <h1>検索条件</h1>

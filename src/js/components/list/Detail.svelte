@@ -1,5 +1,5 @@
 <script>
-import { tourDetail, detailOverlayStore } from '../store.js';
+import { tourDetail, detailOverlayStore } from '../../store.js';
 
 $:style = 
 $tourDetail.image ? `background-image:url(${$tourDetail.image})` : '';
