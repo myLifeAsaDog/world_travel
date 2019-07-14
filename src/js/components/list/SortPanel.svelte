@@ -1,17 +1,11 @@
 <script>
-import { countryStore, cityStore, deptStore, seatStore, orderStore, tourList } from '../../store.js';
+import { orderStore, tourList, searchParamsDerived } from '../../store.js';
+
 export let isOpenPanel = false;
-const onSortChange = (orderCode) => {
+
+const onSortChange = async(orderCode) => {
   orderStore.changeOrder(orderCode);
-  const dataParams = {
-    countryCode: $countryStore.code,
-    cityCode: $cityStore.code,
-    deptCity: $deptStore,
-    seatClass: $seatStore,
-    order: $orderStore,
-    pageStart: 1
-  }
-  tourList.getTourlList(dataParams);
+  await tourList.getTourlList($searchParamsDerived);
   isOpenPanel = false;
 }
 </script>

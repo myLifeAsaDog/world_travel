@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store'
+import { writable, derived } from 'svelte/store'
 
 const DEPARTURE_MAP = [
   { code: 'TYO', name: '東京' },
@@ -146,6 +146,20 @@ const detailOverlay = () => {
     openPanel: () => set(true),
   }
 }
+/** 検索条件 */
+const searchParams = () => derived(
+  [countryStore, cityStore, deptStore, seatStore, orderStore],
+  ([$countryStore, $cityStore, $deptStore, $seatStore, $orderStore]) => {
+    return {
+      countryCode: $countryStore.code,
+      cityCode: $cityStore.code,
+      deptCity: $deptStore,
+      seatClass: $seatStore,
+      order: $orderStore,
+      pageStart: 1,
+    }
+  }
+)
 
 export const routerStore = router()
 export const deptStore = departure()
@@ -162,3 +176,4 @@ export const tourStore = writable({})
 export const tourList = tours()
 export const detailOverlayStore = detailOverlay()
 export const tourDetail = writable({})
+export const searchParamsDerived = searchParams()
