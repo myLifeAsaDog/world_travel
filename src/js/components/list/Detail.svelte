@@ -1,8 +1,9 @@
 <script>
 import { tourDetailStore } from '../../store.js';
-import { slide } from 'svelte/transition';
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
+
+export let isOpenDetail = false;
 
 $:backgroundImage = 
 $tourDetailStore.image ? `background-image:url(${$tourDetailStore.image});` : '';
@@ -23,9 +24,11 @@ const dateFormat = (dateParam) => {
 }
 </script>
 
-<div class="MdCMN11Overlay">
+<div class="MdCMN12DetailOverlay" 
+  class:ExOpen={isOpenDetail} 
+  class:ExClose={!isOpenDetail}>
 
-  <div class="MdCMN09Img" style={backgroundImage} transition:slide>
+  <div class="MdCMN09Img" style={backgroundImage}>
     <span on:click={() => dispatch('closeDetailPanel', false)}>CLOSE</span>
   </div>  
 

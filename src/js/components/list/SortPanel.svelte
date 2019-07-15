@@ -6,7 +6,7 @@ const dispatch = createEventDispatcher();
 export let isOpenSortPanel = false;
 
 const onSortChange = async(orderCode) => {
-  dispatch('closeSortPanel', false);
+  dispatch('closeSortPanel');
   tourList.reset();
   orderStore.changeOrder(orderCode);
   await tourList.getTourlList($searchParamsDerived);
@@ -19,7 +19,7 @@ const onSortChange = async(orderCode) => {
     <h2>並び順</h2>
     <span
       class="mdCMN04Close"
-      on:click={() => dispatch('closePanel', false)}
+      on:click={() => dispatch('closeSortPanel')}
     >CLOSE</span>
   </header>
   <ul>

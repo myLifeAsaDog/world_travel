@@ -6,8 +6,8 @@ import Detail from './list/Detail.svelte';
 import SortPanel from './list/SortPanel.svelte';
 import Footer from './common/Footer.svelte';
 
-let isOpenSortPanel = false;
 let isOpenDetail = false;
+let isOpenSortPanel = false;
 
 $:orderName = orderStore.nameMap.filter(item => item.code === $orderStore);
 </script>
@@ -34,7 +34,10 @@ $:orderName = orderStore.nameMap.filter(item => item.code === $orderStore);
     {#if $tourList.result}
     <ol>
       {#each $tourList.tourList as tour}
-        <li><TourCard item={tour} on:openDetailPanel={() => isOpenDetail = true}/></li>
+        <li><TourCard item={tour} on:openDetailPanel={() => { 
+          isOpenDetail = true;
+          isOpenSortPanel = false; 
+        }}/></li>
       {/each}
     </ol>  
     {/if}
@@ -46,10 +49,10 @@ $:orderName = orderStore.nameMap.filter(item => item.code === $orderStore);
   <SortPanel 
     isOpenSortPanel={isOpenSortPanel} 
     on:closeSortPanel={() => isOpenSortPanel = false} />
-  {#if isOpenDetail}
-  <Detail on:closeDetailPanel={() => {
-    isOpenDetail = false;
-    isOpenSortPanel = false;
+  <Detail 
+    isOpenDetail={isOpenDetail}
+    on:closeDetailPanel={() => { 
+      isOpenDetail = false; 
+      isOpenSortPanel = false; 
     }}/>
-  {/if}  
 </main>

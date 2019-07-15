@@ -13,7 +13,7 @@ const addDigits = (numberParam) => {
 }
 const onClickTour = () => {
   tourDetailStore.setTourDetail(item);
-  dispatch('openDetailPanel', true);
+  dispatch('openDetailPanel');
 }
 </script>
 
