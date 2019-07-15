@@ -134,7 +134,7 @@ const tours = () => {
       const tours = await res.json()
       tours.tourList.length ? set(tours) : set(defaultTour)
     },
-    reset: () => set({ result: null, result_start: 1, tourList: [] })
+    reset: () => set({ result: null, result_start: 1, tourList: [] }),
   }
 }
 
@@ -143,7 +143,7 @@ const tourDetail = () => {
   return {
     subscribe,
     setTourDetail: (tourParam) => set(tourParam),
-    reset: () => set(defaultTour)
+    reset: () => set(defaultTour),
   }
 }
 
