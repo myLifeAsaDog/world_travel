@@ -4,7 +4,6 @@ import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 export let item = {};
-let tourPicture;
 
 const destinations = item.city_summary? item.city_summary.split('、'): '';
 const style = item.image? `background-image:url(${item.image})`: '';
@@ -13,14 +12,13 @@ const addDigits = (numberParam) => {
   return String(numberParam).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
 }
 const onClickTour = () => {
-  item.imageTop = tourPicture.getBoundingClientRect().top + window.pageYOffset;
   tourDetailStore.setTourDetail(item);
   dispatch('openDetailPanel', true);
 }
 </script>
 
 <div class="MdCMN05TourList" on:click={onClickTour}>
-  <div class="mdCMN05TourImage" style={style} bind:this={tourPicture}>
+  <div class="mdCMN05TourImage" style={style}>
     <div class="mdCMN05Info">
       <span class="mdCMN05Dept">{item.dept_city}発</span>
       <span class="mdCMN05Term">{item.term}日間</span>

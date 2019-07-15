@@ -6,8 +6,6 @@ const dispatch = createEventDispatcher();
 
 $:backgroundImage = 
 $tourDetailStore.image ? `background-image:url(${$tourDetailStore.image});` : '';
-$:imageTop = 
-$tourDetailStore.imageTop ? `top:${$tourDetailStore.imageTop}px;`: '';
 
 $:destCites = 
 $tourDetailStore.city_summary ? $tourDetailStore.city_summary.split('、') : '';
@@ -27,8 +25,7 @@ const dateFormat = (dateParam) => {
 
 <div class="MdCMN11Overlay">
 
-  <div class="MdCMN09Img" style={backgroundImage} 
-  transition:slide={{ y:100, duration:300 }}>
+  <div class="MdCMN09Img" style={backgroundImage} transition:slide>
     <span on:click={() => dispatch('closeDetailPanel', false)}>CLOSE</span>
   </div>  
 

@@ -47,6 +47,9 @@ $:orderName = orderStore.nameMap.filter(item => item.code === $orderStore);
     isOpenSortPanel={isOpenSortPanel} 
     on:closeSortPanel={() => isOpenSortPanel = false} />
   {#if isOpenDetail}
-  <Detail on:closeDetailPanel={() => isOpenDetail = false}/>
+  <Detail on:closeDetailPanel={() => {
+    isOpenDetail = false;
+    isOpenSortPanel = false;
+    }}/>
   {/if}  
 </main>
