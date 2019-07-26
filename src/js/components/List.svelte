@@ -1,5 +1,6 @@
 <script>
-import { routerStore, orderStore, tourList, tourDetailStore } from '../store.js';
+import { routerStore, cityStore, orderStore, tourList, tourDetailStore } from '../store.js';
+import Weather from './list/Weather.svelte';
 import TourCard from './list/TourCard.svelte';
 import Pager from './list/Pager.svelte';
 import Detail from './list/Detail.svelte';
@@ -16,9 +17,12 @@ $:orderName = orderStore.nameMap.filter(item => item.code === $orderStore);
   <header class="LyHead">
     <span class="lyHeadMd02Back" 
     on:click={() => routerStore.search()}>BACK</span>
-    <h1>検索結果</h1>
+    <h1>{$cityStore.name}</h1>
     <span/>
   </header>
+
+  <Weather/>
+
   <section>
     <div class="MdCMN07Result">
       <p class="mdCMN07Sort" class:ExOpen={isOpenSortPanel} class:ExClose={!isOpenSortPanel} on:click={() => isOpenSortPanel = !isOpenSortPanel}>
