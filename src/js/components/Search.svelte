@@ -1,5 +1,6 @@
 <script>
-import { routerStore, deptStore, seatStore, orderStore, searchOverlayStore, countryStore, cityStore, tourList, tourDetailStore } from '../store.js';
+import { push } from 'svelte-spa-router';
+import { deptStore, seatStore, orderStore, searchOverlayStore, countryStore, cityStore, tourList, tourDetailStore } from '../store.js';
 import Footer from './common/Footer.svelte';
 import TogglePanel from './search/TogglePanel.svelte';
 import Overlay from './search/overlay/Overlay.svelte';
@@ -28,13 +29,13 @@ const onSubmit = async (params) => {
   await tourList.getTourlList(dataParams)
   /* Detailが描画できないので初期値を設定する */
   tourDetailStore.setTourDetail($tourList.tourList[0])
-  routerStore.list()
+  push('/list')
 }
 </script>
 
 <main class="LyMain">
   <header class="LyHead">
-    <span class="lyHeadMd02Back" on:click={() => routerStore.index()}>BACK</span>
+    <span class="lyHeadMd02Back" on:click={() => push('/')}>BACK</span>
     <h1>検索条件</h1>
     <span/>
   </header>

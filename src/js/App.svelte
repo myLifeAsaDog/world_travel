@@ -1,11 +1,15 @@
 <script>
-import { routerStore } from './store.js';
+import Router from 'svelte-spa-router'
+
 import Index from './components/Index.svelte';
 import Search from './components/Search.svelte';
 import List from './components/List.svelte';
 
-const routes = [Index, Search, List];
-$:currentComponent = routes[$routerStore];
+const routes = {
+  '/': Index,
+  '/search': Search,
+  '/list': List
+};
 </script>
 
-<svelte:component this={currentComponent}/>
+<Router {routes}/>

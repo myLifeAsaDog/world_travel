@@ -1,5 +1,6 @@
 <script>
-import { routerStore, cityStore, orderStore, tourList, tourDetailStore } from '../store.js';
+import { push } from 'svelte-spa-router';
+import { cityStore, orderStore, tourList, tourDetailStore } from '../store.js';
 import Weather from './list/Weather.svelte';
 import TourCard from './list/TourCard.svelte';
 import Pager from './list/Pager.svelte';
@@ -16,12 +17,14 @@ $:orderName = orderStore.nameMap.filter(item => item.code === $orderStore);
 <main class="LyMain">
   <header class="LyHead">
     <span class="lyHeadMd02Back" 
-    on:click={() => routerStore.search()}>BACK</span>
+    on:click={() => push('/search')}>BACK</span>
     <h1>{$cityStore.name}</h1>
     <span/>
   </header>
 
+  {#if $cityStore.lat && $cityStore.lon}
   <Weather/>
+  {/if}
 
   <section>
     <div class="MdCMN07Result">

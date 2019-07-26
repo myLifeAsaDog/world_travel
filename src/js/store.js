@@ -24,17 +24,6 @@ const ORDER_MAP = [
   { code: 4, name: '期間が長い順' },
 ]
 
-/** ページ遷移 */
-const router = () => {
-  const { subscribe, set } = writable(0)
-  return {
-    subscribe,
-    index: () => set(0),
-    search: () => set(1),
-    list: () => set(2),
-  }
-}
-
 /** 出発地 */
 const departure = () => {
   const { subscribe, set } = writable('TYO')
@@ -162,7 +151,6 @@ const searchParams = () => derived(
   }
 )
 
-export const routerStore = router()
 export const deptStore = departure()
 export const seatStore = seatClass()
 export const orderStore = orderList()
