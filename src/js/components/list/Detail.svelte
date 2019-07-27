@@ -16,7 +16,7 @@ $:hotels =
 $tourDetailStore.hotel_summary ? $tourDetailStore.hotel_summary.split('、') : '';
 
 const addDigits = (numberParam) => {
-  return String(numberParam).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+  return String(numberParam).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 const dateFormat = (dateParam) => {
   const Time = new Date(dateParam)
@@ -75,6 +75,7 @@ const dateFormat = (dateParam) => {
         {/each}
         </ul>
       </dd>
+      {#if $tourDetailStore.sche}
       <dt>ツアー日程</dt>
       <dd>
         <ol>
@@ -83,6 +84,7 @@ const dateFormat = (dateParam) => {
           {/each}
         </ol>
       </dd>
+      {/if}
       <dt>企画会社</dt>
       <dd>{$tourDetailStore.brand}</dd>
       <dt>AB-ROAD URL</dt>

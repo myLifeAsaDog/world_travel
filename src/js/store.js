@@ -109,7 +109,7 @@ const defaultTour = {
     city_summary: null,
     hotel_summary: null,
     theme: null,
-    sche: [],
+    sche: null,
     airline_summary: null,
   }],
 }

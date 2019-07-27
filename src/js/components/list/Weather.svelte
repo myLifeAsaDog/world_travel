@@ -1,10 +1,10 @@
 <script>
-import { onMount } from 'svelte';
 import { cityStore } from '../../store.js';
 
-let weatherState = { city: { name: '' }, list: [] };
+let weather = { city: { name: '' }, list: [] };
+let promise = getWeather();
 
-onMount(async() => {
+async function getWeather() {
   const API_KEY = 'a2354bac666e77fac0546559d1d8f424';
   const WEATHER_API_ENDPOINT = 'https://api.openweathermap.org/data/2.5/forecast';
 
@@ -12,9 +12,10 @@ onMount(async() => {
   const weather = await res.json();
 
   if (res.ok) { 
-    weatherState = weather;
+    return weather;
 	}
-});
+}
+
 const dateFormat = (dateParam) => {
   return String(dateParam).replace(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/g, '$2/$3 $4:$5')
 }
@@ -23,10 +24,11 @@ const temperatureFormat = (tempParam) => {
 }
 </script>
 
+{#await promise then weather}
 <section class="MdCMN13Weather">
-  <h2>{weatherState.city.name} - Weather</h2>
+  <h2>{weather.city.name} - Weather</h2>
   <ol>
-    {#each weatherState.list as list}
+    {#each weather.list as list}
     <li>
       <dl>
         <dt>{list.weather[0].description}</dt>
@@ -45,3 +47,4 @@ const temperatureFormat = (tempParam) => {
     {/each}
   </ol>
 </section>
+{/await}
