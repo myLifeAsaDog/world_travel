@@ -2,7 +2,7 @@
 import { cityStore } from '../../store.js';
 
 let weather = { city: { name: '' }, list: [] };
-let promise = getWeather();
+let weatherPromise = getWeather();
 
 async function getWeather() {
   const API_KEY = 'a2354bac666e77fac0546559d1d8f424';
@@ -24,9 +24,9 @@ const temperatureFormat = (tempParam) => {
 }
 </script>
 
-{#await promise then weather}
+{#await weatherPromise then weather}
 <section class="MdCMN13Weather">
-  <h2>{weather.city.name} - Weather</h2>
+  <h2>Weather</h2>
   <ol>
     {#each weather.list as list}
     <li>

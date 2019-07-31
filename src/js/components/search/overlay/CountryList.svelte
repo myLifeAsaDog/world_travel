@@ -1,7 +1,7 @@
 <script>
 import { destStore, countryStore, countryList, cityList } from '../../../store.js';
-const onCountrySelect = (countryCode, countryName) => {
-  countryStore.set({ code:countryCode, name:countryName })
+const onCountrySelect = (countryCode, countryName, countryCurrency) => {
+  countryStore.set({ code:countryCode, name:countryName, currency:countryCurrency })
   cityList.getCityList(countryCode)
   destStore.set('city')
 }
@@ -12,7 +12,7 @@ const onCountrySelect = (countryCode, countryName) => {
     <ul class="mdCMN03List">
     {#each $countryList as country}
       <li class:ExSelected={$countryStore.code === country.code}
-      on:click={() => onCountrySelect(country.code, country.name)}>{country.name}</li>
+      on:click={() => onCountrySelect(country.code, country.name, country.currency)}>{country.name}</li>
      {/each}
     </ul>
   </dd>

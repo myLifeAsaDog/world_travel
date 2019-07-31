@@ -641,3 +641,24 @@ body {
     }
   }
 }
+.MdCMN14Currency {
+  margin: 20px 15px 0 15px;
+  background: $header-color;
+  box-shadow: 0px 0px 8px #cccccc;
+
+  h2 {
+    padding: 20px;
+    background: #999;
+    color: #fff;
+  }
+  dl {
+    dt {
+      padding: 20px;
+    }
+    dd{
+      padding: 0 20px 20px 20px;
+      font-size: 26px;
+      text-align: right;
+    }
+  }
+}
