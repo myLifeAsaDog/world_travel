@@ -17,11 +17,8 @@ async function getCurrency() {
 </script>
 
 {#await currencyPromise then currency}
-<section class="MdCMN14Currency">
-  <h2>Currency</h2>
-  <dl>
-    <dt>{$countryStore.currency.currencyName}</dt>
-    <dd>&yen; {currency.val}</dd>
-  </dl>
-</section>
+<dl class="mdCMN13Currency">
+  <dt>{$countryStore.currency.currencyName}</dt>
+  <dd>&yen; {currency.val}</dd>
+</dl>
 {/await}

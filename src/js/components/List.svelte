@@ -23,13 +23,14 @@ $:orderName = orderStore.nameMap.filter(item => item.code === $orderStore);
     <span/>
   </header>
 
-  {#if $cityStore.lat && $cityStore.lon}
-  <Weather/>
-  {/if}
-
-  {#if $countryStore && $countryStore.currency}
-  <Currency/>
-  {/if}
+  <section class="MdCMN13CountryPanel">
+    {#if $cityStore.lat && $cityStore.lon}
+    <Weather/>
+    {/if}
+    {#if $countryStore && $countryStore.currency}
+    <Currency/>
+    {/if}  
+  </section>
 
   <section>
     <div class="MdCMN07Result">

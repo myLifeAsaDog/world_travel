@@ -591,72 +591,47 @@ body {
     visibility: hidden;
   }
 }
-.MdCMN13Weather {
+.MdCMN13CountryPanel {
+  display: flex;
+  padding: 20px;
   margin: 20px 15px 0 15px;
   background: $header-color;
   box-shadow: 0px 0px 8px #cccccc;
 
-  h2 {
-    padding: 20px;
-    background: #999;
-    color: #fff;
+  dl {
+    flex: 1;
+
+    dt {
+      text-align: center;
+    }
   }
-  ol {
-    display: flex;
-    padding: 30px 0;
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;    
 
-    li {
-      padding: 0 20px;
-      border-left: solid 1px #fff;
-      border-right: solid 1px #eee;
+  .mdCMN13Weather {
+    dd {
+      div {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
 
-      dl {
-        dt {
-          text-align: center;
-        }
-        dd {
-          div {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
+        span {
+          font-size: 26px;
 
-            span {
-              font-size: 26px;
-
-              &::after {
-                content: '℃';
-                font-size: 16px;
-              }
-            }
-          }
-          time {
-            display: block;
-            text-align: center;            
-            white-space: nowrap;
+          &::after {
+            content: '℃';
+            font-size: 16px;
           }
         }
       }
+      time {
+        display: block;
+        text-align: center;            
+        white-space: nowrap;
+      }
     }
   }
-}
-.MdCMN14Currency {
-  margin: 20px 15px 0 15px;
-  background: $header-color;
-  box-shadow: 0px 0px 8px #cccccc;
 
-  h2 {
-    padding: 20px;
-    background: #999;
-    color: #fff;
-  }
-  dl {
-    dt {
-      padding: 20px;
-    }
+  .mdCMN13Currency {
     dd{
-      padding: 0 20px 20px 20px;
       font-size: 26px;
       text-align: right;
     }
