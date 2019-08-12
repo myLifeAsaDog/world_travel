@@ -592,34 +592,43 @@ body {
   }
 }
 .MdCMN13CountryPanel {
-  display: flex;
   padding: 20px;
   margin: 20px 15px 0 15px;
   background: $header-color;
   box-shadow: 0px 0px 8px #cccccc;
 
-  dl {
-    flex: 1;
+  .mdCMN13Weather {
+    padding: 0 0 10px 0;
+    border-bottom: solid 1px #eee;
 
     dt {
-      text-align: center;
+      time {
+        margin: 0 10px 0 0;
+      }
     }
-  }
-
-  .mdCMN13Weather {
     dd {
-      div {
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
+      display: flex;
+      align-items: center;
 
-        span {
-          font-size: 26px;
+      .mdCMN13Temp {
+        font-size: 26px;
 
-          &::after {
-            content: '℃';
-            font-size: 16px;
-          }
+        &::after {
+          content: '℃';
+          font-size: 16px;
+        }
+      }
+      .mdCMN13Humi {
+        font-size: 26px;
+        
+        &::before {
+          content: '湿度';
+          margin: 0 10px;
+          font-size: 16px;
+        }
+        &::after {
+          content: '%';
+          font-size: 16px;
         }
       }
       time {
@@ -629,11 +638,13 @@ body {
       }
     }
   }
-
   .mdCMN13Currency {
+    padding: 20px 0 0 0;
+    border-top: solid 1px #fff;
+        
     dd{
+      margin: 10px 0 0 0;
       font-size: 26px;
-      text-align: right;
     }
   }
 }
