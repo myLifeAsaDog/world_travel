@@ -5,9 +5,6 @@ const dispatch = createEventDispatcher();
 
 export let isOpenDetail = false;
 
-$:backgroundImage = 
-$tourDetailStore.image ? `background-image:url(${$tourDetailStore.image});` : '';
-
 $:destCites = 
 $tourDetailStore.city_summary ? $tourDetailStore.city_summary.split('、') : '';
 $:tourTheme = 
@@ -28,7 +25,7 @@ const dateFormat = (dateParam) => {
   class:ExOpen={isOpenDetail} 
   class:ExClose={!isOpenDetail}>
 
-  <div class="MdCMN09Img" style={backgroundImage}>
+  <div class="MdCMN09Img" style="background-image:url({$tourDetailStore.image})">
     <span on:click={() => dispatch('closeDetailPanel', false)}>CLOSE</span>
   </div>  
 
